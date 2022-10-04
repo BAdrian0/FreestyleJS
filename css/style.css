@@ -1,24 +1,55 @@
 #container {
-    width: 400px;
-    height: 400px;
+    width: 800px;
+    height: 600px;
     position: relative;
     background: yellow;
   }
 
-#animate, circle {
+#animate, #leftPalette, circle {
     width: 200px;
     height: 50px;
     position: absolute;
     background: red;
-    top: 350px;
-    left: 350px;
-  }
-
-.rotated {
+    top: 550px;
+    left: 150px;
+    border-radius: 25px;
     transform-origin: bottom left;
-    transform: rotate(-45deg);
+    /* transform-origin: bottom left;
+    transform: rotate(45deg); */
   }
 
+
+#rightPalette {
+    width: 200px;
+    height: 50px;
+    position: absolute;
+    background: red;
+    top: 550px;
+    left: 450px;
+    border-radius: 25px;
+    transform-origin: bottom right;
+
+}  
+
+.rotatedLeft {
+    /* transform-origin: bottom left; */
+    transform: rotate(-45deg);
+    /* transform: rotate (var(--angle)deg); */
+  }
+.rotatedRight {
+transform-origin: bottom right;
+transform: rotate(45deg);
+}
+.rotatedIniLeft {
+/* transform-origin: bottom left; */
+/* transform: rotate(30deg); */
+transform: var(--angleL);
+}
+.rotatedIniRight {
+/* transform-origin: bottom right; */
+/* transform: rotate(-30deg); */
+transform: var(--angleR);
+}
 
 
 
