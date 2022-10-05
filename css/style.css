@@ -51,10 +51,39 @@ transform: var(--angleL);
 transform: var(--angleR);
 }
 
+#ball {
+	height: 64px;
+	width: 64px;
+	border-radius: 50%;
+	position: fixed;
+	top: calc(50% - 15px);
+	left: calc(50% - 15px);
+	border: 3px solid rgb(243, 49, 49);
+	font-size: 2em;
+	background-color: aquamarine;
+  }
+  .ball_effect {
+	height: 100%;
+	width: 100%;
+	border-radius: 100px;
+	animation: spinBall 0.5s linear infinite;
+	background-image: url("https://wallpaper.dog/large/10930243.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+  }
+  @keyframes spinBall {
+	100% {
+	  -webkit-transform: rotate(360deg);
+	  transform: rotate(360deg);
+	}
+  }
 
-
-
-
+  #triangle {
+	fill:lime;
+	stroke:purple;
+	stroke-width:3
+  }
 
 
 

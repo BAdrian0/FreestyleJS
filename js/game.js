@@ -5,11 +5,18 @@ console.log("elem: ", elemLeft);
 
 const elemRight = document.getElementById("rightPalette");
 console.log("elem: ", elemRight);
-let palette_speed = 1;
-let a=0;
-let b=0;
+let palette_speed = 1,
+    game_speed = 5,
+    a=0,
+    b=0.
+    gravity=0.01,
+    friction=0.1,
+    width=70;
 myLeftMove(30);
 myRightMove(-30);
+
+const  ball = document.getElementById("ball");
+console.log("ball: ", ball);
 
 window.addEventListener("keydown", (eventdown) => {
     if (eventdown.defaultPrevented) {
@@ -63,6 +70,11 @@ window.addEventListener("keydown", (eventdown) => {
           // Do something for "right arrow" key press.
             }
           break;
+        case "ArrowDown":
+            start_game();
+          // Do something for "down arrow" key press.
+          break;
+
         default:
           return; // Quit when this doesn't handle the key event.
       }
@@ -112,6 +124,7 @@ window.addEventListener("keyup", (eventup) => {
             // Do something for "right arrow" key press.
             break;
 
+
         default:
             return; // Quit when this doesn't handle the key event.
         }        
@@ -138,3 +151,106 @@ function myRightMove(b) {
 //     elemRight.classList.replace('rotatedRight', 'rotatedIniRight')
     
 // }
+
+function start_game() {
+    let id = null;
+    const elem = document.getElementById("ball");
+    rect = elem.getBoundingClientRect()
+    // const container = document.getElementById("display_box");
+    // container.innerHTML = ''; 
+    // let pos_x = rect['x'];
+    // let pos_y = rect['y'];
+    let vector_x = vector_y = 1,
+        pos_x = pos_y = 100,
+        ball_w = 70,
+        vx = 1,
+        vy = 1;
+
+    // clearInterval(id);
+    id = setInterval(frame, game_speed); // game loop
+    function frame() {
+        update();
+        if(pos_y>=450 && pos_x <=150){
+            if ((pos_x) <= (pos_y-400)){ // lower left corner
+                console.log("lower left corner!!!")
+                vx=1.01*vx;
+                vector_x = -vector_x;
+                vector_y = -vector_y;
+                pos_x += vx*vector_x;
+                pos_y += vy*vector_y; 
+                frame();
+            }
+            // vector_y = - vector_y
+        } 
+        // if(pos_y>=(450-width) && pos_x <=(800-width) && pos_x>(650-width)){
+            if(pos_y>=(450) && pos_x <=(800-width) && pos_x>(650)){
+            // if ((pos_x+width) >= (1250-(pos_y+width))){ // lower right corner
+            if ((pos_x+width) >= (1250-(pos_y+width+20))){ // lower right corner
+            // if ((pos_x-650-70) >= (pos_y-400)){ // lower right corner
+                console.log("lower right corner!!!")
+                vx=1.01*vx;
+                // vector_x = -vector_x;
+                vector_y = -vector_y;
+                pos_x += vx*vector_x;
+                pos_y += vy*vector_y; 
+                frame();
+            }
+            // vector_y = - vector_y
+        } 
+        if (pos_x >= 10+800-ball_w || pos_x <= 5) { //limits x (left and right)
+            // clearInterval(id);
+            vx=1;
+            vector_x = -vector_x;
+            // vector_y = -vector_y;
+            pos_x += vx*vector_x;
+            frame();        
+        } else if (pos_y <= 10+ball_w || pos_y >= 600) { // limits y top & bottom
+            // vector_x = -vector_x;
+            vector_y = -vector_y;
+            // if (vector_y>0){
+            //     vy=1.1*vy
+            // } else {
+            //     vy=1
+            // }
+            pos_y += vy*vector_y; 
+        } else {
+       
+
+        if (vector_x>=0){
+            pos_x += vx*vector_x - friction;
+        } else {
+            pos_x += vx*vector_x + friction ;
+
+        }
+        // pos_x += (vx-friction)*vector_x;
+
+        if (vector_y>=0){
+            vy=vy+gravity
+        } else {
+            vy=vy-gravity
+        }
+        pos_y += vy*vector_y + .05; 
+        elem.style.top = pos_y + "px"; 
+        elem.style.left = pos_x + "px"; 
+      }
+    }
+
+
+}
+
+
+
+function update(id) {
+    const elem = document.getElementById("ball");
+    rect = elem.getBoundingClientRect()
+    const container = document.getElementById("display_box");
+    container.innerHTML = '';  
+    for (const key in rect) {
+        if (typeof rect[key] !== 'function') {
+          let para = document.createElement('p');
+          para.textContent = `${key} : ${rect[key]}`;
+          container.appendChild(para);
+        }
+      }
+}
+

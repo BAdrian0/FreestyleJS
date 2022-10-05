@@ -13,32 +13,23 @@
 
     <h1>Pinball</h1>
 
-
-    <!-- <p><button onclick="myMove()">Click Me</button></p> -->
-    <!-- <p><button onmousedown="myMove()" onmouseup="myMoveBack()" >Click Me</button></p>  -->
-    <!-- <p><button onkeydown="myMove()" onkeyup="myMoveBack()" >Click Me</button></p>  -->
-    <!-- <p><button onmouseup="myMoveBack()">Click Me</button></p>  -->
-
-    <div id ="container">
+    <div id="container">
         <!-- <div id ="animate"></div> -->
-        <div id ="leftPalette" class="rotatedIniLeft" data-anglel="30";></div>
-        <div id ="rightPalette" class="rotatedIniRight" data-angler="-30"></div>
+        <div id="leftPalette" class="rotatedIniLeft" data-anglel="30";></div>
+        <div id="rightPalette" class="rotatedIniRight" data-angler="-30"></div>
+        <div id="ball" data-xpos="0" data-ypos="0"></div>
+        <svg width="800" height="600">
+            <polygon id="triangle" points="0, 350, 200, 600, 0, 600"/>
+            <polygon id="triangle" points="600, 600, 800, 350, 800, 600"/>
+        </svg>
 
     </div>
 
-    <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 250 250"
-    width="250"
-    height="250">
-    <circle
-        cx="100"
-        cy="100"
-        r="50"
-        fill="gold"
-        id="circle"
-        onclick="clickCircle();" />
-    </svg>
+    <div id="display_box">
+        
+
+
+    </div>
 
 </body>
 </html>
