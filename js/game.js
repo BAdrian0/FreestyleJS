@@ -158,104 +158,68 @@ function start_game() {
     let id = null;
     const elem = document.getElementById("ball");
     rect = elem.getBoundingClientRect()
-    // const container = document.getElementById("display_box");
+    // const container = document.getElementById("display_box"); //used for diplaying the ball coordinates
     // container.innerHTML = ''; 
     // let pos_x = rect['x'];
     // let pos_y = rect['y'];
     let vector_x = vector_y = 1,
-        // pos_x = Math.floor(Math.random() * (120 - 100 + 1) ) + 100,
-        // pos_y = Math.floor(Math.random() * (150 - 100 + 1) ) + 100
         pos_x = 100,
         pos_y = 100,
         ball_w = 70,
         vx = 1,
-        // vy = 1;
         vy = Math.floor(Math.random() * (1.3 - 1 + 1) ) + 1;
 
 
     id = setInterval(frame, game_speed); // game loop
 
     function frame() {
-        // update();
         if(pos_y>=450 && pos_x <=150+ball_w){
             if ((pos_x) <= (pos_y-450+35)){ // lower left corner
-                // console.log("lower left corner!!!")
-                // vx=1.01*vx;
-                // vector_x = -vector_x;
                 vector_y = -vector_y;
-                // pos_x += vx*vector_x;
                 pos_y += vy*vector_y; 
                 frame();
             }
-            // vector_y = - vector_y
         } 
-        // if(pos_y>=(450-width) && pos_x <=(800-width) && pos_x>(650-width)){
         if(pos_y>=(450) && pos_x <=(800-width) && pos_x>(650)){
-            // if ((pos_x+width) >= (1250-(pos_y+width))){ // lower right corner
             if ((pos_x+width) >= (1250-(pos_y+width+20))){ // lower right corner
-                // rotateBall(alpha+45);
-            // if ((pos_x-650-70) >= (pos_y-400)){ // lower right corner
                 console.log("lower right corner!!!")
-                // vx=1.01*vx;
-                // vector_x = -vector_x;
                 if (vector_y>0) {
                     vector_y = -vector_y;
                 }
-                // vector_y = -vector_y;
-                // pos_x += vx*vector_x;
                 pos_y += vy*vector_y; 
                 frame();
             }
-            // vector_y = - vector_y
         } 
-        // if (pos_x >= 10+800-ball_w || pos_x <= 5) { //limits x (left and right)
         if (pos_x >= 800-ball_w || pos_x <= 5) { //limits x (left and right)
-            // rotateBall(alpha+45);
-            // clearInterval(id);
+
 
             vector_x = -vector_x;
             if (vector_x>0){
                 vx = 1.02*vx
             }
             vx=1;
-            // vector_y = -vector_y;
             pos_x += vx*vector_x + 0.1;
             frame();       
 
         } else if (pos_y <= 10) { // limits y top
-            // rotateBall(alpha+45);
             vy = 1;
             vector_y = -vector_y;
             pos_y += vy*vector_y + 0.1; 
 
         } else if (pos_y >= 600 && pos_y <800) { // limits y bottom 
-            // rotateBall(alpha+45);   
-            // vector_x = -vector_x;
-            // if (pos_y>=600 && pos_x>= 150 && pos_x <= (150+palette_lenght*Math.cos(a * Math.PI / 180)) {
-            //     // Math.tan(degrees * Math.PI / 180);
-            //     // Math.cos(degrees * Math.PI / 180);
-            //     console.log("in range right palette");
-            //     if ((pos_y-450) >= (pos_x-150)*Math.tan(a * Math.PI / 180)) {
-            //         vector_y = -vector_y;
-            //         pos_y += vy*vector_y;
-            //         frame(); 
-            //     }
             console.log("a= ", a);
             console.log("b= ",b);
             if (a==0 && (pos_x>150 && pos_x < (350))) { // contact with left palette
-                // rotateBall(alpha+45);
                 vy=vy*1.01;
                 vector_y = -vector_y;
                 pos_y += vy*vector_y + .05; 
 
             } else if (a>0 && (pos_x>150 && (pos_x < (350)))) { // missing left palette
-                // pos_y += vy*vector_y + .05; 
                 pos_y += vy*vector_y; 
                 elem.style.top = pos_y + "px"; 
                 elem.style.left = pos_x + "px"; 
             }
             if (b==0 && (pos_x>450 && pos_x < (650))) { // contact with right palette
-                // rotateBall(alpha+45);
                 vy=vy*1.01;
                 vector_y = -vector_y;
                 pos_y += vy*vector_y + .05; 
@@ -265,7 +229,6 @@ function start_game() {
                 elem.style.top = pos_y + "px"; 
                 elem.style.left = pos_x + "px"; 
             }
-            // pos_y += vy*vector_y + .05;
             pos_y += vy*vector_y; 
             elem.style.top = pos_y + "px"; 
             elem.style.left = pos_x + "px"; 
@@ -296,8 +259,6 @@ function start_game() {
             elem.style.left = pos_x + "px"; 
       }
     }
-
-
 }
 
 
@@ -347,6 +308,7 @@ function display_time() {
 }
 
 
+//function used for diplaying coordinates of the ball
 
 // function update(id) {
 //     const elem = document.getElementById("ball");
