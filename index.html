@@ -5,8 +5,43 @@
     <meta charset="UTF-8">
     <!-- http://proger.i-forge.net/The_smallest_transparent_pixel/ -->
     <link rel="icon" href="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/game.js" defer></script>
 </head>
-<body>
+<body id="body">
+
+    <!-- <h1>Pinball Game</h1> -->
+    <div id="logo">
+        <img src="./img/logo_pinball.png" alt=”a pinball logo” style=”width:300px;height:100px;">
+    </div>
+    <input type="text" id="timer" disabled value="0">
+    <div id="container">
+        <!-- <div id ="animate"></div> -->
+        <div id="leftPalette" class="rotatedIniLeft" data-anglel="30";></div>
+        <div id="rightPalette" class="rotatedIniRight" data-angler="-30"></div>
+        <div id="ball" class="rotateBall" data-angleball="0" data-xpos="0" data-ypos="0"  >
+            <img src="./img/ball.jpeg" style=”width:70px;height:70px;" >
+        </div>
+        <!-- <svg width="800" height="600"> -->
+        <svg width="1600" height="800">
+            <polygon id="triangle" points="0, 350, 200, 600, 0, 600"/>
+            <polygon id="triangle" points="600, 600, 800, 350, 800, 600"/>
+            <!-- <polygon id="tableScore" points="1000, 0, 1600, 0, 1600, 650, 1000,650"/> -->
+        </svg>
+        <div id="tableScore2">
+            <img src="./img/shot1.png" alt=”a pinball scoreboard” style=”width:300px;height:600px;">
+        </div>
+    </div>
+    <!-- <div id="tableScore"> -->
+
+
+
+
+    </div>
+
+    <!-- <div id="display_box"></div> -->
 
 </body>
 </html>
+
+  

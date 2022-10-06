@@ -1,0 +1,284 @@
+
+
+body {
+    background-image: url('https://scx1.b-cdn.net/csz/news/800/2017/theoreticala.jpg');
+    color: #FFFFFF;
+}
+
+
+
+#container {
+    width: 800px;
+    height: 600px;
+    position: relative;
+    background: yellow;
+  }
+
+#animate, #leftPalette, circle {
+    width: 200px;
+    height: 50px;
+    position: absolute;
+    background: red;
+    top: 550px;
+    left: 150px;
+    border-radius: 25px;
+    transform-origin: bottom left;
+    /* transform-origin: bottom left;
+    transform: rotate(45deg); */
+  }
+
+
+#rightPalette {
+    width: 200px;
+    height: 50px;
+    position: absolute;
+    background: red;
+    top: 550px;
+    left: 450px;
+    border-radius: 25px;
+    transform-origin: bottom right;
+
+}  
+
+.rotatedLeft {
+    /* transform-origin: bottom left; */
+    transform: rotate(-45deg);
+    /* transform: rotate (var(--angle)deg); */
+  }
+.rotatedRight {
+transform-origin: bottom right;
+transform: rotate(45deg);
+}
+
+
+.rotatedIniLeft {
+/* transform-origin: bottom left; */
+/* transform: rotate(30deg); */
+transform: var(--angleL);
+}
+.rotatedIniRight {
+/* transform-origin: bottom right; */
+/* transform: rotate(-30deg); */
+transform: var(--angleR);
+}
+
+.rotateBall {
+	transform: var(--angleBall);
+}
+
+#ball {
+	height: 64px;
+	width: 64px;
+	border-radius: 50%;
+	position: fixed;
+	top: calc(50%);
+	left: calc(50%);
+	/* top: calc(50% - 15px);
+	left: calc(50% - 15px); */
+	border: 3px solid rgb(243, 49, 49);
+	font-size: 2em;
+	/* background-color: aquamarine; */
+	background-image: linear-gradient(rgb(186, 65, 230), aquamarine);
+	overflow: hidden;
+	background-position: 50% 50%;
+	background-size: cover;
+
+  }
+
+
+#triangle {
+	fill:lime;
+	stroke:purple;
+	stroke-width:3
+  }
+
+.tableScore {
+	fill:rgb(3, 88, 3);
+	stroke:purple;
+	stroke-width:3
+}
+
+
+.lose {
+	color: firebrick;
+	position: absolute;
+	top: 200px;
+	left: 150px;
+	font-size: 5rem;
+	/* display: flex; */
+	justify-content: center;
+	align-items: center;
+	margin: 0;
+	/* background-color: #6db0f4; */
+	font-family: 'Hind', sans-serif;
+}
+
+.score {
+	color: rgb(34, 178, 123);
+	position: absolute;
+	top: 350px;
+	left: 200px;
+	font-size: 3rem;
+	/* display: flex; */
+	justify-content: center;
+	align-items: center;
+	margin: 0;
+	/* background-color: #6db0f4; */
+	font-family: 'Hind', sans-serif;
+}
+
+#timer {
+	z-index: 1;
+	color: firebrick;
+	position: absolute;
+	top: 389px;
+	left: 977px;
+	width: 196px;
+	font-size: 2rem;
+	display: flex;
+	text-align: right;
+	justify-content: right;
+	align-items: right;
+	margin: 0;
+	background-color: black;
+	font-family: sans-serif;
+}
+
+#tableScore {
+	fill:rgb(33, 228, 134);
+	stroke:purple;
+	stroke-width:3
+}
+
+#tableScore2 {
+	position: absolute;
+	top: 0px;
+	left: 900px;
+	width: 288px;
+	height: 600px;
+	border: 3px solid rgb(243, 49, 49);
+	background-color: rgb(255, 191, 127);
+}
+
+#logo {
+	position: relative;
+	top: 0px;
+	left: 100px;
+	width: 400px;
+	height: 100px;
+}
+
+
+/* 
+
+
+.ball_effect {
+	height: 100%;
+	width: 100%;
+	border-radius: 100px;
+	animation: spinBall 0.5s linear infinite;
+	background-image: url("https://wallpaper.dog/large/10930243.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+  }
+  @keyframes spinBall {
+	100% {
+	  -webkit-transform: rotate(360deg);
+	  transform: rotate(360deg);
+	}
+  } */
+
+
+/* @import url('https://fonts.googleapis.com/css?family=Hind');
+
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+html, body {
+	height: 100%;
+	overflow: hidden;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0;
+	color: #dee2e6;
+	background-color: #212529;
+	font-family: 'Hind', sans-serif;
+	text-transform: uppercase;
+}
+
+.container {
+	position: relative;
+	line-height: 0;
+}
+
+.score {
+	position: absolute;
+	top: 10px;
+	line-height: 1;
+}
+
+.score span {
+	font-size: 3.25rem;
+}
+
+.current-score {
+	left: 10px;
+}
+
+.high-score {
+	text-align: right;
+	right: 10px;
+}
+
+.trigger {
+  appearance: none;
+	position: absolute;
+	width: 80px;
+	height: 80px;
+	bottom: 10px;
+  border: 0;
+	border-radius: 50%;
+  color: inherit;
+	background-color: #e64980;
+	text-align: center;
+	line-height: 80px;
+	font-size: 1.25rem;
+  text-transform: inherit;
+	cursor: pointer;
+	user-select: none;
+  outline: none;
+}
+
+.left-trigger {
+	left: 10px;
+}
+
+.right-trigger {
+	right: 60px;
+}
+
+canvas {
+	overflow: hidden;
+	border-radius: 5px;
+	box-shadow: 0 5px 25px rgba(0, 0, 0, 0.75);
+}
+
+// responsive scaling, because pinball tables are tall
+@media (min-height: 0px) {
+	.container { transform: scale(0.25); }
+}
+@media (min-height: 400px) {
+	.container { transform: scale(0.5); }
+}
+@media (min-height: 600px) {
+	.container { transform: scale(0.75); }
+}
+@media (min-height: 800px) {
+	.container { transform: scale(1); }
+} */
