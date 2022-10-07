@@ -9,6 +9,7 @@ let palette_speed = 1,
     a=30,
     b=-30.
     gravity=0.01,
+    // gravity=0.02,
     friction=0.1,
     width=70,
     palette_lenght = 200,
@@ -164,10 +165,12 @@ function start_game() {
     // let pos_y = rect['y'];
     let vector_x = vector_y = 1,
         pos_x = 100,
+        // pos_x = Math.floor(Math.random() * (150 - 100 + 1) ) + 100,
         pos_y = 100,
+        // pos_y = Math.floor(Math.random() * (150 - 100 + 1) ) + 100,
         ball_w = 70,
         vx = 1,
-        vy = Math.floor(Math.random() * (1.3 - 1 + 1) ) + 1;
+        vy = Math.floor(Math.random() * (1.2 - 1 + 1) ) + 1;
 
 
     id = setInterval(frame, game_speed); // game loop
