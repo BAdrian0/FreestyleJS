@@ -4,21 +4,18 @@ console.log("elem: ", elemLeft);
 
 const elemRight = document.getElementById("rightPalette");
 console.log("elem: ", elemRight);
-let palette_speed = 1,
-    game_speed =4,
-    a=30,
-    b=-30.
-    gravity=0.01,
-    friction=0.1,
-    width=70,
-    palette_lenght = 200,
-    max_angle_a = 0, //-45
-    max_angle_b = 0, //45
-    game_on=false,
-    counter_time = 0
-    alpha = 0.
-    palette_l_counter =0,
-    palette_r_counter = 0;
+let palette_speed = 1;
+let game_speed =4;
+let a=30;
+let b=-30;
+let gravity=0.01;
+let friction=0.1;
+let width=70;
+let max_angle_a = 0;
+let max_angle_b = 0;
+let game_on=false;
+let counter_time = 0;
+
 
 myLeftMove(30);
 myRightMove(-30);
@@ -29,11 +26,12 @@ let elem_timer = document.getElementById("timer");
 const  ball = document.getElementById("ball");
 console.log("ball: ", ball);
 
-window.addEventListener("keydown", (eventdown) => {
-    if (eventdown.defaultPrevented) {
+window.addEventListener("keydown", (event_down) => {
+    if (event_down.defaultPrevented) {
       return; // Do nothing if the event was already processed
-    }   
-    switch (eventdown.key) {
+    }
+    switch (event_down.key) {
+      // Do something for "left arrow" key press.
         case "ArrowLeft":
             try {
                 if (id_l){
@@ -46,16 +44,16 @@ window.addEventListener("keydown", (eventdown) => {
             id_l = setInterval(frameL, palette_speed);
             console.log("id_l: ", id_l)
             function frameL() {
-                if (a==max_angle_a){
+                if (a===max_angle_a){
                     clearInterval(id_l);
                 } else {
                     myLeftMove(a);
                     a--;
-                    elemLeft.dataset.anglel=a;
+                    elemLeft.dataset.anglel=a.toString();
                 }
             }
-          // Do something for "left arrow" key press.
           break;
+      // Do something for "right arrow" key press.
         case "ArrowRight":
             try {
                 if (id_r){
@@ -63,77 +61,75 @@ window.addEventListener("keydown", (eventdown) => {
                 }
             }
             catch(err){
-                console.log("erorr!!")
+                console.log("error!!")
             }
             id_r = setInterval(frameR, palette_speed);
             function frameR() {
-                if (b==max_angle_b){
+                if (b===max_angle_b){
                     clearInterval(id_r);
-                    // myLeftMove(45);
                 } else {
                     myRightMove(b);
                     b++;
-                    elemRight.dataset.angler=b;
+                    elemRight.dataset.angler=b.toString();
                 }
-          // Do something for "right arrow" key press.
             }
           break;
+      // Do something for "down arrow" key press.
         case "ArrowDown":
-            if (game_on==false) {
+            let counter_time;
+            if (game_on === false) {
                 start_game();
                 counter_time = display_time();
             }
-          // Do something for "down arrow" key press.
           break;
 
         default:
           return; // Quit when this doesn't handle the key event.
       }
       // Cancel the default action to avoid it being handled twice
-      eventdown.preventDefault();
-    }, true);    
+      event_down.preventDefault();
+    }, true);
 
 
 window.addEventListener("keyup", (eventup) => {
     if (eventup.defaultPrevented) {
         return; // Do nothing if the event was already processed
-    }    
+    }
     switch (eventup.key) {
+        // Do something for "left arrow" key press.
         case "ArrowLeft":
             clearInterval(id_l);
             id_l = setInterval(frameL, palette_speed);
             function frameL() {
-                if (a==30){
+                if (a===30){
                     clearInterval(id_l);
-                    // myLeftMove(30);
                 } else {
                     myLeftMove(a);
                     a++;
-                    elemLeft.dataset.anglel=a;
+                    elemLeft.dataset.anglel=a.toString();
                 }
             }
-            // Do something for "left arrow" key press.
             break;
         case "Right": // IE/Edge specific value
+        // Do something for "right arrow" key    press.
         case "ArrowRight":
             clearInterval(id_r);
             id_r = setInterval(frameR, palette_speed);
             function frameR() {
-                if (b==-30){
+                if (b===-30){
                     clearInterval(id_r);
                     // myLeftMove(30);
                 } else {
                     myRightMove(b);
                     b--;
-                    elemRight.dataset.angler=b;
+                    elemRight.dataset.angler=b.toString();
                 }
             }
-            // Do something for "right arrow" key press.
             break;
 
         default:
             return; // Quit when this doesn't handle the key event.
-        }        
+        }
       // Cancel the default action to avoid it being handled twice
       eventup.preventDefault();
     }, true);
@@ -154,7 +150,7 @@ function rotateBall(alpha) {
 
 function start_game() {
     remove_message();
-    game_on=true;
+    game_on = true;
     let id = null;
     const elem = document.getElementById("ball");
     rect = elem.getBoundingClientRect()
@@ -163,7 +159,7 @@ function start_game() {
         pos_y = 100,
         ball_w = 70,
         vx = 1,
-        vy = Math.floor(Math.random() * (1.2 - 1 + 1) ) + 1;
+        vy = Math.floor(Math.random() * 1.2 ) + 1;
 
 
     id = setInterval(frame, game_speed); // game loop
@@ -172,20 +168,20 @@ function start_game() {
         if(pos_y>=450 && pos_x <=150+ball_w){
             if ((pos_x) <= (pos_y-450+35)){ // lower left corner
                 vector_y = -vector_y;
-                pos_y += vy*vector_y; 
+                pos_y += vy*vector_y;
                 frame();
             }
-        } 
+        }
         if(pos_y>=(450) && pos_x <=(800-width) && pos_x>(650)){
             if ((pos_x+width) >= (1250-(pos_y+width+20))){ // lower right corner
                 console.log("lower right corner!!!")
                 if (vector_y>0) {
                     vector_y = -vector_y;
                 }
-                pos_y += vy*vector_y; 
+                pos_y += vy*vector_y;
                 frame();
             }
-        } 
+        }
         if (pos_x >= 800-ball_w || pos_x <= 5) { //limits x (left and right)
 
 
@@ -195,39 +191,39 @@ function start_game() {
             }
             vx=1;
             pos_x += vx*vector_x + 0.1;
-            frame();       
+            frame();
 
         } else if (pos_y <= 10) { // limits y top
             vy = 1;
             vector_y = -vector_y;
-            pos_y += vy*vector_y + 0.1; 
+            pos_y += vy*vector_y + 0.1;
 
-        } else if (pos_y >= 600 && pos_y <800) { // limits y bottom 
+        } else if (pos_y >= 600 && pos_y <800) { // limits y bottom
             console.log("a= ", a);
             console.log("b= ",b);
-            if (a==0 && (pos_x>150 && pos_x < (350))) { // contact with left palette
+            if (a===0 && (pos_x>150 && pos_x < (350))) { // contact with left palette
                 vy=vy*1.01;
                 vector_y = -vector_y;
-                pos_y += vy*vector_y + .05; 
+                pos_y += vy*vector_y + .05;
 
             } else if (a>0 && (pos_x>150 && (pos_x < (350)))) { // missing left palette
-                pos_y += vy*vector_y; 
-                elem.style.top = pos_y + "px"; 
-                elem.style.left = pos_x + "px"; 
+                pos_y += vy*vector_y;
+                elem.style.top = pos_y + "px";
+                elem.style.left = pos_x + "px";
             }
-            if (b==0 && (pos_x>450 && pos_x < (650))) { // contact with right palette
+            if (b===0 && (pos_x>450 && pos_x < (650))) { // contact with right palette
                 vy=vy*1.01;
                 vector_y = -vector_y;
-                pos_y += vy*vector_y + .05; 
+                pos_y += vy*vector_y + .05;
 
             } else if (b<0 && (pos_x>450 && (pos_x < (650)))) { // missing left palette
-                pos_y += vy*vector_y + .05; 
-                elem.style.top = pos_y + "px"; 
-                elem.style.left = pos_x + "px"; 
+                pos_y += vy*vector_y + .05;
+                elem.style.top = pos_y + "px";
+                elem.style.left = pos_x + "px";
             }
-            pos_y += vy*vector_y; 
-            elem.style.top = pos_y + "px"; 
-            elem.style.left = pos_x + "px"; 
+            pos_y += vy*vector_y;
+            elem.style.top = pos_y + "px";
+            elem.style.left = pos_x + "px";
 
         }  else if (pos_y >800) {  //ending the game
             game_on=false;
@@ -250,9 +246,9 @@ function start_game() {
             } else {
                 vy=vy-gravity
             }
-            pos_y += vy*vector_y; 
-            elem.style.top = pos_y + "px"; 
-            elem.style.left = pos_x + "px"; 
+            pos_y += vy*vector_y;
+            elem.style.top = pos_y + "px";
+            elem.style.left = pos_x + "px";
       }
     }
 }
